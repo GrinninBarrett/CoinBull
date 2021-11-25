@@ -7,7 +7,7 @@ const Charting = () => {
       <div style={{ marginLeft: ".3rem", marginRight: ".3rem" }}>
         <TradingViewWidget
           container_id="techincal-analysis"
-          symbol={"BTC" + "USD"}
+          symbol={"BTCUSD"}
           theme={Themes.WHITE}
           width="100%"
           height="700px"
