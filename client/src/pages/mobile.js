@@ -45,7 +45,7 @@ const Mobile = () => {
               }}
               className="is-size-5 is-size-6-mobile has-text-centered"
             >
-              Within Saferia you'll see the below "share" icon
+              Within Safari you'll see the below "share" icon
               indicated in the below picture, click there.
             </p>
           </div>
