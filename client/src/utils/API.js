@@ -15,11 +15,21 @@ export async function getASingleCoin() {
 }
 // Gets news from Lunarcrush
 export async function getNews(symbol) {
-  const res = await axios.get(
-    `https://api.lunarcrush.com/v2?data=feeds&key=axnpldsftoa03n17z75cy5r&symbol=${symbol}&limit=10&sources=news`
-  );
-  const news = res.data;
-  return news;
+  const res = await axios({
+    url: `https://lunarcrush.com/api3/feeds?since=1w&symbol=${symbol}&sources=news`,
+    headers: {
+      'Authorization': `Bearer ${process.env.NEWS_API_TOKEN}`,
+    },
+  })
+  
+    console.log(res.data);
+    return res.data;
+  // const res = await axios.get(
+  //   `https://lunarcrush.com/api3/feeds?key=pfl8o8fkm9llsf89zsle49d8belg11938rhbm70l7&symbol=${symbol}&limit=10&sources=news`
+  // );
+  // const news = res.data;
+  // console.log(news);
+  // return news;
 }
 
 export async function getCoin(ticker) {

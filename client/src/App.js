@@ -49,7 +49,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
+        <div className="full-height">
           <StoreProvider>
             <Navbar pages={pages} />
             <Switch>
