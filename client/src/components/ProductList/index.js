@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import CoinTab from "../CoinTab";
 import Pagination from "../Pagination";
-import { getAllCoins } from "../../utils/API";
+import { getAllCoins, newGetAllCoins } from "../../utils/API";
 import { ADD_FAVORITE } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
@@ -32,7 +32,10 @@ function ProductList() {
   useEffect(() => {
     const fetchCoins = async () => {
       try {
-        const coins = await getAllCoins();
+        // const coins = await getAllCoins();
+        // setCoinsState(coins);
+        const coins = await newGetAllCoins();
+        console.log(coins)
         setCoinsState(coins);
       } catch (err) {
         console.error(err);
@@ -220,12 +223,12 @@ function ProductList() {
             {currentCoins.map((coin) => (
               <CoinTab
                 key={coin.id}
-                id={coin.id}
-                rank={coin.rank}
+                id={coin.symbol}
+                rank={coin.market_cap_rank}
                 name={coin.name}
-                logo_url={coin.logo_url}
-                price={coin.price}
-                change={coin["1d"].price_change_pct}
+                logo_url={coin.image}
+                price={coin.current_price}
+                change={coin.price_change_percentage_24h}
                 circulating_supply={coin.circulating_supply}
                 market_cap={coin.market_cap}
                 handleAddFavorite={handleAddFavorite}

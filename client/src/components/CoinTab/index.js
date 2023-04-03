@@ -26,9 +26,11 @@ const CoinTab = (coin) => {
   const [isActive, setIsActive] = useState(false);
 
   price = parseFloat(price).toFixed(2);
-  circulating_supply = circulating_supply.replace(/(.)(?=(\d{3})+$)/g, "$1,");
-  market_cap = market_cap.replace(/(.)(?=(\d{3})+$)/g, "$1,");
-  change = parseFloat(change * 100).toFixed(2);
+  circulating_supply = Number(circulating_supply.toFixed(2)).toLocaleString("en-US");
+  market_cap = Number(market_cap.toFixed(2)).toLocaleString("en-US");
+  // circulating_supply = circulating_supply.replace(/(.)(?=(\d{3})+$)/g, "$1,");
+  // market_cap = market_cap.replace(/(.)(?=(\d{3})+$)/g, "$1,");
+  change = parseFloat(change).toFixed(2);
 
   const handleAlert = () => {
     setIsActive(true);

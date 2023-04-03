@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CoinSideTab from "../CoinSideTab";
 // import Pagination from "../Pagination";
-import { getAllCoins } from "../../utils/API";
+import { getAllCoins, newGetAllCoins } from "../../utils/API";
 
 
 
@@ -19,8 +19,12 @@ function SideList() {
   useEffect(() => {
     const fetchCoins = async () => {
       try {
-        const coins = await getAllCoins();
-        setCoinsState(coins);
+        const coins = await newGetAllCoins();
+        const newCurrentCoins = coins.map(coin => {
+          coin.oneDay = coin["1d"]
+          return coin;
+        })
+        setCoinsState(newCurrentCoins);
       } catch (err) {
         console.error(err);
       }
@@ -31,6 +35,8 @@ function SideList() {
   const indexOfLastCoin = currentPage * coinsPerPage;
   const indexOfFirstCoin = indexOfLastCoin - coinsPerPage;
   const currentCoins = coinsState.slice(indexOfFirstCoin, indexOfLastCoin);
+
+  console.log(currentCoins);
 
   // const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
@@ -57,11 +63,11 @@ function SideList() {
               {currentCoins.map((coin) => (
                 <CoinSideTab
                   key={coin.id}
-                  id={coin.id}
+                  id={coin.symbol}
                   name={coin.name}
-                  logo_url={coin.logo_url}
-                  price={coin.price}
-                  change={coin["1d"].price_change_pct}
+                  logo_url={coin.image}
+                  price={coin.current_price}
+                  change={coin.price_change_percentage_24h}
                 />
               ))}
             </tbody>

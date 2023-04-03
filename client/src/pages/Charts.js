@@ -9,8 +9,8 @@ const Charting = () => {
           container_id="techincal-analysis"
           symbol={"BTCUSD"}
           theme={Themes.WHITE}
-          width="100%"
-          height="700px"
+          // width="100%"
+          // height="700px"
           local="en"
           toolbar_bg="#f1f3f6"
         />
